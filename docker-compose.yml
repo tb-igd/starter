@@ -1,0 +1,31 @@
+version: '2'
+
+networks:
+  overlay:
+
+volumes:
+  postgres-vol:
+
+services:
+  app:
+    environment:
+      - DATABASE_URL=postgres://postgres:kqnHSqgQ8kR4o5qN@postgres/caterpy
+    build: .
+    networks:
+      - overlay
+    volumes:
+      - .:/opt/app
+    ports:
+      - 5000:80
+  postgres:
+    image: postgres:9.6
+    ports:
+      - 5431:5432
+    environment:
+      - DATABASE_URL=postgres://postgres:kqnHSqgQ8kR4o5qN@postgres/caterpy
+      - POSTGRES_DB=caterpy
+      - POSTGRES_PASSWORD=kqnHSqgQ8kR4o5qN
+    networks:
+      - overlay
+    volumes:
+      - postgres-vol:/var/lib/postgresql/data
