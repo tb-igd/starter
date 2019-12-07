@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<audio id="myAudio" src="{% static 'noises/rain.mp3' %}" preload="auto">
+</audio>
+<a onClick="togglePlay()">Click here to hear.</a>
+{% endblock  %}
